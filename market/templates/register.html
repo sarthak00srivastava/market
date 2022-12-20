@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <div class="container">
+        <br>
+        <h3>Please create your Account</h3>
+        <br>
+        <form method="POST" style="color: lightgrey;">
+            {{ form.hidden_tag() }}
+            {{ form.username.label(class='form-label') }}
+            {{ form.username(class='form-control', placeholder='User Name') }}
+            <br>
+            {{ form.email.label(class='form-label') }}
+            {{ form.email(class='form-control', placeholder='Please enter a valid Email') }}
+            <br>
+            {{ form.password1.label(class='form-label') }}
+            {{ form.password1(class='form-control', placeholder='Password') }}
+            <br>
+            {{ form.password2.label(class='form-label') }}
+            {{ form.password2(class='form-control', placeholder='Confirm Password') }}
+            <br>
+            <div>
+                <h6>Already have an account?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('login') }}">Log In</a>
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary btn-lg") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

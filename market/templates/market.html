@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Market
+{% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    <div class="row">
+        <div class="container col-8">
+            <h3 class="text-center">Items available on the Market</h3>
+            <h6 class="text-center">Click on them to start buying.</h6>
+            <br>
+            <table class="table table-hover table-striped table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">BARCODE</th>
+                        <th scope="col">OPTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    {% include 'includes/modal_items.html' %}
+                    <tr>
+                        <th scope="row">{{ item.id }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>₹ {{ item.price }}</td>
+                        <td>{{ item.barcode }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-light mx-1" data-toggle="modal" data-target="#Modal-info-{{ item.id }}">More Info</button>
+                            <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#Modal-purchase-{{ item.id }}">Purchase</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="container col-4">
+            <h3 class="text-center">Items Purchased</h3>
+            <h6 class="text-center">Click on them to sell.</h6>
+            <br>
+            {% for user_item in user_items %}
+            {% include 'includes/sell_modal_item.html' %}
+            <div class="card bg-dark">
+                <div class="card-header text-center">
+                    {{ user_item.name }}
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">{{ user_item.description }}</p>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#Modal-sell-{{ user_item.id }}">Sell for ₹{{ user_item.price }}</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

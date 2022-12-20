@@ -1,0 +1,33 @@
+<!-- Modal for Sell Confirmation -->
+<div class="modal fade" id="Modal-sell-{{ user_item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center">
+                    {{ user_item.name }}
+                </h3>
+                <br>
+                <h5 class="text-center">
+                    Are you sure to sell {{ user_item.name }} for ₹{{ user_item.price }} ?
+                </h5>
+                <h6 class="text-center">
+                    By clicking <strong>Sell</strong>, you confirm to sell the item.
+                </h6>
+                <br>
+            </div>
+            <div class="modal-footer mx-auto">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <form method="POST">
+                    {{ sell.hidden_tag() }}
+                    <input id='sold_item' name='sold_item' type="hidden" value="{{ user_item.name }}">
+                    {{ sell.submit(class='btn btn-success') }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-content{
+        background-color: rgb(22, 22, 22);
+    }
+</style>

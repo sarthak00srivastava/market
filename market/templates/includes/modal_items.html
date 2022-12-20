@@ -1,0 +1,54 @@
+<!-- Modal for More Info -->
+<div class="modal fade" id="Modal-info-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center">
+                    {{ item.name }}
+                </h3>
+                <br>
+                <h5 class="text-center">
+                    {{ item.description }}
+                </h5>
+                <br>
+            </div>
+            <div class="modal-footer mx-auto">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Purchase Confirmation -->
+<div class="modal fade" id="Modal-purchase-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center">
+                    {{ item.name }}
+                </h3>
+                <br>
+                <h5 class="text-center">
+                    Are you sure to buy {{item.name}} for ₹{{item.price}} ?
+                </h5>
+                <h6 class="text-center">
+                    By clicking <strong>Purchase</strong>, you confirm to buy the item.
+                </h6>
+                <br>
+            </div>
+            <div class="modal-footer mx-auto">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <form method="POST">
+                    {{ purchase.hidden_tag() }}
+                    <input id='purchased_item' name='purchased_item' type="hidden" value="{{ item.name }}">
+                    {{ purchase.submit(class="btn btn-success") }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-content{
+        background-color: rgb(22, 22, 22);
+    }
+</style>
